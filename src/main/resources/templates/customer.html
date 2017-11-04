@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+	<head>
+		<title>Edit Customer</title>
+	</head>
+	<body>
+		<h1 layout:fragment="header">
+			<span class="icon add-customer-icon" th:if="${customer.id == 0}"></span>
+			<span class="iconed-title" th:if="${customer.id == 0}">Add Customer</span>
+			<span class="icon edit-customer-icon" th:if="${customer.id != 0}"></span>
+			<span class="iconed-title" th:if="${customer.id != 0}">Edit Customer</span>
+		</h1>
+		<div layout:fragment="content" class="container">
+			<form th:action="${customer.id != 0} ? ${customer.id} +'.html' : 'form.html' " th:object="${customer}" th:method="${customer.id != 0} ? put : post" role="form">
+				<div class="form-group">
+					<label>Last name</label>
+					<input type="text" th:field="*{name}" class="form-control" placeholder="name" />
+				</div>
+				<div class="form-group">
+					<label>First name</label>
+					<input type="text" th:field="*{firstname}" class="form-control" placeholder="firstname" />
+				</div>
+				<div class="form-group">
+					<label>E-mail</label>
+					<input type="text" th:field="*{email}" class="form-control" placeholder="email" />
+				</div>
+				<div class="form-group">
+					<label>Street address</label>
+					<input type="text" th:field="*{street}" class="form-control" placeholder="street" />
+				</div>
+				<div class="form-group">
+					<label>City</label>
+					<input type="text" th:field="*{city}" class="form-control" placeholder="city" />
+				</div>
+				<button type="submit" id="saveCustomer" class="btn btn-default">Save</button>
+			</form>
+		</div>
+	</body>
+</html>

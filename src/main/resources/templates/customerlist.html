@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+	<head>
+		<title>Customers</title>
+	</head>
+	<body>
+		<h1 layout:fragment="header">
+			<span class="icon customers-icon"></span>
+			<span class="iconed-title">Customers</span>
+		</h1>
+		<div layout:fragment="content" class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<a class="button" id="addCustomer" href="form.html">Add Customer</a>
+				</div>
+			</div>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Last name</th>
+						<th>First name</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${customers.empty}">
+						<td colspan="4">No customers</td>
+					</tr>
+					<tr th:each="customer : ${customers}">
+						<td>
+							<a href="1.html" th:href="${customer.id+'.html'}" th:text="${customer.id}">1</a>
+						</td>
+						<td>
+							<a href="1.html" th:href="${customer.id+'.html'}" th:text="${customer.name}">Last name</a>
+						</td>
+						<td>
+							<a href="1.html" th:href="${customer.id+'.html'}" th:text="${customer.firstname}">First name</a>
+						</td>
+						<td>
+							<form th:action="${customer.id}+'.html'" th:method="delete">
+								<input type="submit" id="deleteCustomer" value="delete" class="btn btn-link delete" />
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

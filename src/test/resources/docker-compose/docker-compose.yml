@@ -1,0 +1,15 @@
+version: '2'
+services:
+  eureka:
+    image: andon/eureka:latest
+  customer:
+    image: customer:$GO_PIPELINE_COUNTER
+    links:
+      - eureka
+    expose:
+      - "8080"
+  demodb:
+    image: mongo:3.5.5
+    expose: 
+      - 27017
+      
